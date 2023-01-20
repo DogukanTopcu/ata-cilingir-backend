@@ -4,7 +4,7 @@ import requestIP from "request-ip";
 import fs from "fs";
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: ""}));
 
 
 app.use(requestIP.mw({
@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
     console.log(clientIp);
     fs.appendFile("IPs.txt", counter.toString() + " - " + clientIp + "\n", (err) => {
         if (err) throw console.log(err);
-        console.log("Added")
         counter++;
     });
     res.write("Hello")
